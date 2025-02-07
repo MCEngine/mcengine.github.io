@@ -1,0 +1,53 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f4f4f4;
+}
+
+/* Square Box at the Top */
+.header-box {
+    width: 300px;
+    height: 300px;
+    background-color: #524f4f;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Project Grid */
+.project-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.project-item {
+    width: 150px;
+    text-align: center;
+}
+
+.project-item a {
+    display: block;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+.project-item img {
+    width: 150;
+    height: 150px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.project-item a:hover {
+    color: blue;
+}
