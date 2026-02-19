@@ -1,0 +1,52 @@
+/* --- Main Container --- */
+.container {
+    max-width: 800px;
+    width: 100%;
+    background-color: #1e1e1e; /* Dark card background */
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+/* --- Headings --- */
+h1 {
+    text-align: center; /* Centered IMPORTANT */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #ffffff;
+    margin-bottom: 40px;
+    border-bottom: 2px solid #333;
+    padding-bottom: 20px;
+}
+
+h2 {
+    color: #8ab4f8; /* Soft blue accent color */
+    font-size: 1.2rem;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    border-left: 4px solid #8ab4f8; /* stylistic left border */
+    padding-left: 10px;
+}
+
+/* --- Lists --- */
+ul {
+    list-style-type: disc; /* Bullet points */
+    padding-left: 20px;    /* Indentation */
+    margin: 0;
+}
+
+li {
+    margin-bottom: 8px;    /* Space between lines */
+    line-height: 1.6;
+}
+
+/* --- Footer --- */
+.footer {
+    text-align: center; /* Centered Thank you */
+    margin-top: 50px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #fff;
+}
