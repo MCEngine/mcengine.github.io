@@ -22,8 +22,4 @@ This file is the entry point for any agent working in this repository. Read it f
 
 ## Shared Asset Consumers
 
-Ecosystem project sites reuse the theme by importing the stylesheets and script above directly from `https://mcengine.github.io`:
-
-* `MCEngine/MCBackpack` — `docs/index.html` (project website).
-
-When shared asset paths change, update every consumer listed here in the same change set.
+Ecosystem sites reuse the theme by importing the stylesheets and script above directly from `https://mcengine.github.io`. No consumer sites are registered at the moment; add each new consumer to this list when it starts importing the shared assets, and when shared asset paths change, update every consumer listed here in the same change set.
