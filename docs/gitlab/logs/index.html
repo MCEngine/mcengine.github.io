@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>gitlab change log — MCEngine</title>
+  <meta name="description" content="Change log for the MCEngine gitlab module. This page mirrors the latest release; each version has its own permanent page.">
+  <script>
+    window.SITE_ROOT = "../../";
+    window.PAGE_SECTION = "gitlab";
+  </script>
+  <link rel="stylesheet" href="../../css/main.css">
+  <link rel="stylesheet" href="../../css/shared/layout.css">
+  <link rel="stylesheet" href="../../css/shared/components.css">
+  <link rel="stylesheet" href="../../css/logs/logs.css">
+  <script src="../../js/site.js" defer></script>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="container">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="../../index.html">Home</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="../index.html">gitlab</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span aria-current="page">Change log</span>
+    </nav>
+
+    <div class="logs-layout">
+      <div class="logs-main">
+        <section class="hero">
+          <span class="eyebrow">gitlab</span>
+          <h1>Change log</h1>
+          <p class="lead">This page always mirrors the latest release. Every version
+            also has its own permanent page linked in the version list.</p>
+        </section>
+
+        <article class="log-entry panel">
+          <div class="log-entry__head">
+            <h2 class="log-entry__version">v0.0.0</h2>
+            <span class="log-entry__date">2026-07-19</span>
+            <span class="badge badge--ok">Latest</span>
+          </div>
+          <p>Initial release of the <code>gitlab</code> module.</p>
+
+          <div class="log-group">
+            <h3><span class="log-tag log-tag--new">Added</span> Platform API</h3>
+            <ul>
+              <li><code>GitLabPlatform</code> — the single source-of-truth class consumers import.</li>
+              <li><code>getLatestTag()</code>, <code>getTag(String)</code>, and
+                <code>CompareVersion(String)</code>, each returning a <code>CompletableFuture</code>.</li>
+              <li><code>GitLabTag</code> read-only interface (<code>getName()</code>, <code>getCommitSha()</code>).</li>
+            </ul>
+          </div>
+
+          <div class="log-group">
+            <h3><span class="log-tag log-tag--note">Notes</span> Build &amp; constraints</h3>
+            <ul>
+              <li>Java 21 toolchain, built with Gradle (Groovy DSL).</li>
+              <li>No third-party dependencies; only the Java Platform.</li>
+              <li>Addresses the GitLab project by its URL-encoded path; authenticates with the <code>PRIVATE-TOKEN</code> header.</li>
+              <li>Published to GitHub Packages using <code>GITHUB_ACTOR</code> / <code>GITHUB_TOKEN</code>.</li>
+            </ul>
+          </div>
+
+          <p style="margin-top:1.2rem"><a href="0/0/0/index.html">Permanent link to v0.0.0 &rarr;</a></p>
+        </article>
+      </div>
+
+      <aside class="logs-nav panel" aria-label="Versions">
+        <p class="logs-nav__title">Versions</p>
+        <ul>
+          <li><a href="0/0/0/index.html">0.0.0 <span class="logs-nav__pill">Latest</span></a></li>
+        </ul>
+      </aside>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+</body>
+</html>

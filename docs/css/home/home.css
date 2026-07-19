@@ -1,0 +1,19 @@
+/* ==========================================================================
+   Home page — section-specific layout only.
+   ========================================================================== */
+
+.home-section {
+  margin-top: 2.4rem;
+}
+
+.home-section__head {
+  margin-bottom: 1.1rem;
+}
+
+/* Small meta row under a module card title. */
+.module-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+  margin: .6rem 0 0;
+}

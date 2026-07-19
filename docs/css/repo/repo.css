@@ -1,0 +1,35 @@
+/* ==========================================================================
+   Repository (module) page — section-specific layout only.
+   ========================================================================== */
+
+.repo-hero__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin-top: 1rem;
+}
+
+/* A method signature line rendered in the method reference. */
+.sig {
+  font-family: var(--mono);
+  font-size: .92rem;
+  color: var(--accent-strong);
+  background: var(--accent-soft);
+  border: 1px solid var(--hairline);
+  border-radius: 8px;
+  padding: .35rem .6rem;
+  display: inline-block;
+  margin-bottom: .4rem;
+  word-break: break-word;
+}
+
+.method + .method {
+  margin-top: 1.4rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--hairline);
+}
+
+.method__desc {
+  color: var(--ink-700);
+  margin: 0;
+}

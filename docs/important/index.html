@@ -1,54 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Important Notice</title>
-    <link rel="stylesheet" href="../styles/main/style.css">
-    <link rel="stylesheet" href="../styles/important/main.css">
-    <script src="../scripts/main/script.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Important — MCEngine</title>
+  <meta name="description" content="Contributing, open-core policy, support, and AI-usage notice for the MCEngine ecosystem.">
+  <script>
+    window.SITE_ROOT = "../";
+    window.PAGE_SECTION = "important";
+  </script>
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/shared/layout.css">
+  <link rel="stylesheet" href="../css/shared/components.css">
+  <script src="../js/site.js" defer></script>
 </head>
 <body>
+  <div id="site-header"></div>
 
-    <div class="container">
-        <h1>IMPORTANT</h1>
+  <main class="container narrow">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="../index.html">Home</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span aria-current="page">Important</span>
+    </nav>
 
-        <h2>Contributing & Feedback</h2>
-        <ul>
-            <li>Anyone can contribute by suggesting features for the main plugin or ideas for extensions.</li>
-            <li>I also welcome suggestions for code improvements or bug fixes.</li>
-        </ul>
+    <section class="hero">
+      <span class="eyebrow">Notices</span>
+      <h1>Important</h1>
+      <p class="lead">Contributing, the open-core policy, support, and a note on
+        AI usage across the MCEngine ecosystem.</p>
+    </section>
 
-        <h2>Open-Core Policy</h2>
-        <ul>
-            <li>This project follows an Open-Core model.</li>
-            <li>The core plugin will always be MIT Open Source, while extensions may be free or paid.</li>
-        </ul>
+    <section class="panel">
+      <h2 class="section-title">Contributing &amp; feedback</h2>
+      <ul>
+        <li>Anyone can contribute by suggesting features for the main plugin or ideas for extensions.</li>
+        <li>Suggestions for code improvements or bug fixes are welcome.</li>
+      </ul>
+    </section>
 
-        <h2>Support</h2>
-        <ul>
-            <li>Donations are optional.</li>
-            <li>While I appreciate direct support, purchasing paid extensions is the recommended way to support the project.</li>
-        </ul>
+    <section class="panel">
+      <h2 class="section-title">Open-core policy</h2>
+      <ul>
+        <li>This project follows an open-core model.</li>
+        <li>The core plugin will always be MIT open source, while extensions may be free or paid.</li>
+      </ul>
+    </section>
 
-        <h2>Note on AI Usage</h2>
-        <ul>
-            <li>I use AI for coding efficiency, but the core ideas and architectural structure are entirely my own design.</li>
-            <li>You are welcome to use AI as a reference for this code to move faster.</li>
-            <li>I recommend always reading through any AI-generated code.</li>
-            <li>While it often compiles correctly, it is good practice to verify the logic yourself.</li>
-        </ul>
+    <section class="panel">
+      <h2 class="section-title">Support</h2>
+      <ul>
+        <li>Donations are optional.</li>
+        <li>While direct support is appreciated, purchasing paid extensions is the recommended way to support the project.</li>
+      </ul>
+    </section>
 
-        <div class="warning">
-            <div class="warning-title">Warning</div>
-            <p>The main plugin only exposes APIs and will always stay on the latest version.</p>
-            <p>You need an extension to use those APIs.</p>
-            <p>A default extension is available for free.</p>
-            <p>You may use any other extension built by others, or create your own.</p>
+    <section class="panel">
+      <h2 class="section-title">Note on AI usage</h2>
+      <ul>
+        <li>AI is used for coding efficiency, but the core ideas and architectural structure are original work.</li>
+        <li>You are welcome to use AI as a reference for this code to move faster.</li>
+        <li>Always read through any AI-generated code.</li>
+        <li>While it often compiles correctly, it is good practice to verify the logic yourself.</li>
+      </ul>
+    </section>
+
+    <section class="panel">
+      <div class="callout callout--warn">
+        <span class="callout__icon" aria-hidden="true">&#9888;</span>
+        <div class="callout__body">
+          <p><strong>Warning</strong></p>
+          <p>The main plugin only exposes APIs and will always stay on the latest version.
+            You need an extension to use those APIs. A default extension is available for
+            free. You may use any other extension built by others, or create your own.</p>
         </div>
+      </div>
+    </section>
+  </main>
 
-        <div class="footer">Thank you.</div>
-    </div>
-
+  <div id="site-footer"></div>
 </body>
 </html>
