@@ -1,0 +1,24 @@
+<header class="site-header">
+  <nav class="nav" aria-label="Primary">
+    <a class="nav__brand" href="{{ROOT}}index.html">
+      <span class="nav__brand-mark" aria-hidden="true"></span>
+      <span>MCEngine</span>
+    </a>
+
+    <button class="nav__toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-links">
+      <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
+
+    <div class="nav__links" id="nav-links">
+      <a class="nav__link" data-section="home" href="{{ROOT}}index.html">Home</a>
+      <a class="nav__link" data-section="github" href="{{ROOT}}github/index.html">GitHub</a>
+      <a class="nav__link" data-section="gitlab" href="{{ROOT}}gitlab/index.html">GitLab</a>
+      <span class="nav__spacer"></span>
+      <a class="nav__link nav__cta" data-section="important" href="{{ROOT}}important/index.html">Important</a>
+    </div>
+  </nav>
+</header>
