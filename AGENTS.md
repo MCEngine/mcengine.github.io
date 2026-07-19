@@ -7,6 +7,14 @@ theme assets other ecosystem sites import. Read [`INDEX.md`](INDEX.md) for the
 file structure and [`DESIGN.md`](DESIGN.md) for the design system before making
 changes.
 
+This repository is the **single source of truth for the whole MCEngine
+ecosystem's visual language**. [`DESIGN.md`](DESIGN.md) and the stylesheets
+under [`docs/css/`](docs/css/) live here only; sibling sites
+(`mcoriax.github.io`, `mcpaimon.github.io`, `mcshot.github.io`,
+`mchaagenti.github.io`, `mcclauneck.github.io`) do not keep their own
+`DESIGN.md` and do not copy the shared stylesheets — they import them over the
+network from `https://mcengine.github.io/css/...`.
+
 ---
 
 ## Iron Rules
@@ -53,6 +61,11 @@ one.
   invent new colors or one-off styles.
 * Keep files focused (one page = one folder). Prefer editing shared partials
   over duplicating markup.
+* The modular theme under `docs/css/` (`main.css`, `shared/layout.css`,
+  `shared/components.css`) is the ecosystem's **shared stylesheet**: sibling
+  sites import it directly from `https://mcengine.github.io/css/...`. Treat these
+  files and their selectors as a public API — do not rename or remove classes, or
+  move the files, without updating every consumer in the same change set.
 * The legacy shared assets under `docs/styles/` and `docs/scripts/` are imported
   by external ecosystem sites through `https://mcengine.github.io/...` URLs. Do
   not break or move them; if their paths change, update every consumer listed in
