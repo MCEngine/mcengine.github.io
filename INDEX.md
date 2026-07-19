@@ -14,7 +14,8 @@ hosts legacy shared theme assets that other ecosystem sites import through
 
 | Path | Purpose |
 |---|---|
-| [`AGENTS.md`](AGENTS.md) | Primary agent instruction set (rules, workflow, structure). |
+| [`AGENTS.md`](AGENTS.md) | Universal pointer to the portable `.agents/` instruction set. |
+| [`.agents/`](.agents/) | Portable agent instruction set (rules, git workflow, architecture). See [`.agents/INDEX.md`](.agents/INDEX.md). |
 | [`DESIGN.md`](DESIGN.md) | Silver Glass design system — source of truth for the visual language. |
 | [`INDEX.md`](INDEX.md) | This file. |
 | [`LICENSE`](LICENSE) | Repository license. |
