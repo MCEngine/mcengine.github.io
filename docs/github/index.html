@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>github module — MCEngine</title>
+  <meta name="description" content="How to add and use the MCEngine github module: read tags and compare versions from the GitHub REST API through the GitHubPlatform class.">
+  <script>
+    window.SITE_ROOT = "../";
+    window.PAGE_SECTION = "github";
+  </script>
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/shared/layout.css">
+  <link rel="stylesheet" href="../css/shared/components.css">
+  <link rel="stylesheet" href="../css/repo/repo.css">
+  <script src="../js/site.js" defer></script>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="container narrow">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="../index.html">Home</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span aria-current="page">github</span>
+    </nav>
+
+    <section class="hero">
+      <span class="eyebrow">Module</span>
+      <h1>github</h1>
+      <p class="lead">A dependency-free Java library that reads tag and version
+        information from the GitHub REST API through a single source-of-truth
+        class, <code>GitHubPlatform</code>. Every call is asynchronous and returns
+        a <code>CompletableFuture</code>.</p>
+      <div class="repo-hero__meta">
+        <span class="badge badge--accent">Java 21</span>
+        <span class="badge">v0.0.0</span>
+        <span class="badge badge--ok">No dependencies</span>
+      </div>
+      <div class="btn-row" style="margin-top:1.3rem">
+        <a class="btn btn--primary" href="logs/index.html">Change log</a>
+        <a class="btn" href="../gitlab/index.html">GitLab module</a>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2 class="section-title">Coordinates</h2>
+      <div class="deflist">
+        <div class="deflist__row"><div class="deflist__term">groupId</div><div>io.github.mcengine</div></div>
+        <div class="deflist__row"><div class="deflist__term">artifactId</div><div>github</div></div>
+        <div class="deflist__row"><div class="deflist__term">version</div><div>0.0.0</div></div>
+        <div class="deflist__row"><div class="deflist__term">namespace</div><div>io.github.mcengine.github</div></div>
+        <div class="deflist__row"><div class="deflist__term">class</div><div>io.github.mcengine.github.common.GitHubPlatform</div></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2 class="section-title">Add the dependency</h2>
+      <p>The library is published to its own GitHub Packages registry. Authenticate
+        with a token that has the <code>read:packages</code> scope, then declare the
+        dependency (Gradle, Groovy DSL):</p>
+      <span class="code-label">build.gradle</span>
+<pre><code>repositories {
+    maven {
+        url = uri("https://maven.pkg.github.com/MCEngine/github")
+        credentials {
+            username = System.getenv("GITHUB_ACTOR")
+            password = System.getenv("GITHUB_TOKEN")
+        }
+    }
+}
+
+dependencies {
+    implementation "io.github.mcengine:github:0.0.0"
+}</code></pre>
+      <div class="callout callout--info">
+        <span class="callout__icon" aria-hidden="true">&#9432;</span>
+        <div class="callout__body">
+          <p><code>GITHUB_ACTOR</code> is your GitHub username and
+            <code>GITHUB_TOKEN</code> is a token with package read access. Reading tags
+            from a public repository needs no token at runtime.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2 class="section-title">Usage</h2>
+      <p>Construct the platform with an owner and repository, then call any of the
+        three methods. Results arrive through a <code>CompletableFuture</code>:</p>
+      <span class="code-label">Example</span>
+<pre><code>GitHubPlatform platform = new GitHubPlatform("MCEngine", "github");
+
+// Latest tag (or null when the repository has no tags)
+platform.getLatestTag().thenAccept(tag -&gt; {
+    System.out.println(tag == null ? "no tags yet" : tag.getName());
+});
+
+// A specific tag by name (or null when it does not exist)
+platform.getTag("v0.0.0").thenAccept(tag -&gt; { /* ... */ });
+
+// Is the latest tag newer than a plain version? (the "v" prefix is handled)
+boolean newer = platform.CompareVersion("0.0.0").join();</code></pre>
+      <div class="callout callout--warn">
+        <span class="callout__icon" aria-hidden="true">&#9888;</span>
+        <div class="callout__body">
+          <p>Pass the version to <code>CompareVersion</code> without a prefix (for
+            example <code>1.0.0</code>). Tags stored as <code>v1.0.0</code> have the
+            <code>v</code> removed before the <code>Major.Minor.Patch</code> comparison.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2 class="section-title">Method reference</h2>
+      <p class="lead">Import only <code>GitHubPlatform</code>. It returns tags as the
+        read-only <code>GitHubTag</code> interface.</p>
+
+      <div class="method">
+        <span class="sig">CompletableFuture&lt;GitHubTag&gt; getLatestTag()</span>
+        <p class="method__desc">Resolves to the latest tag by semantic version, or
+          <code>null</code> when the repository has no tags.</p>
+      </div>
+
+      <div class="method">
+        <span class="sig">CompletableFuture&lt;GitHubTag&gt; getTag(String tagName)</span>
+        <p class="method__desc">Resolves to the tag whose name equals
+          <code>tagName</code>, or <code>null</code> when it does not exist.</p>
+      </div>
+
+      <div class="method">
+        <span class="sig">CompletableFuture&lt;Boolean&gt; CompareVersion(String version)</span>
+        <p class="method__desc">Resolves to <code>true</code> when the latest tag is a
+          newer semantic version than <code>version</code>; <code>false</code> when it is
+          not newer or when the repository has no tags.</p>
+      </div>
+
+      <h3 style="margin-top:1.6rem">GitHubTag</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Method</th><th>Returns</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>getName()</code></td><td><code>String</code></td><td>Tag name as stored on GitHub, for example <code>v0.0.0</code>.</td></tr>
+            <tr><td><code>getCommitSha()</code></td><td><code>String</code></td><td>Commit SHA the tag points at, or <code>null</code> when unknown.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2 class="section-title">FAQ</h2>
+      <div class="accordion">
+        <details class="acc">
+          <summary>Does it pull in any third-party libraries?</summary>
+          <div class="acc__body">
+            <p>No. The module uses only the Java Platform — the built-in HTTP client
+              and <code>CompletableFuture</code> — so it adds no transitive dependencies.</p>
+          </div>
+        </details>
+        <details class="acc">
+          <summary>Why does every method return a CompletableFuture?</summary>
+          <div class="acc__body">
+            <p>Each call waits for data from the GitHub REST API. Returning a future
+              keeps the call non-blocking so you can compose it with the rest of your
+              asynchronous code.</p>
+          </div>
+        </details>
+        <details class="acc">
+          <summary>Does it cache results?</summary>
+          <div class="acc__body">
+            <p>No. The class holds only the connection details you pass in; every call
+              fetches fresh data and returns it.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+</body>
+</html>

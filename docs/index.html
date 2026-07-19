@@ -1,54 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MCEngine</title>
-    <link rel="stylesheet" href="styles/main/style.css">
-    <link rel="stylesheet" href="styles/important/main.css">
-    <script src="scripts/main/script.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MCEngine — API modules documentation</title>
+  <meta name="description" content="Documentation portal for the MCEngine API modules: dependency-free Java libraries that read tag and version data from GitHub and GitLab.">
+  <script>
+    window.SITE_ROOT = "";
+    window.PAGE_SECTION = "home";
+  </script>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/shared/layout.css">
+  <link rel="stylesheet" href="css/shared/components.css">
+  <link rel="stylesheet" href="css/home/home.css">
+  <script src="js/site.js" defer></script>
 </head>
 <body>
+  <div id="site-header"></div>
 
-    <div class="container">
-        <h1>MCEngine</h1>
+  <main class="container">
+    <section class="hero">
+      <span class="eyebrow">MCEngine ecosystem</span>
+      <h1>API modules, documented.</h1>
+      <p class="lead">Dependency-free Java libraries that read tag and version
+        information from source-hosting platforms through a single, asynchronous
+        source-of-truth class. Pick a module to see how to add it and how to use it.</p>
+      <div class="btn-row" style="margin-top:1.4rem">
+        <a class="btn btn--primary" href="github/index.html">GitHub module</a>
+        <a class="btn" href="gitlab/index.html">GitLab module</a>
+      </div>
+    </section>
 
-        <h2>About</h2>
-        <ul>
-            <li>MCEngine is an ecosystem of open-source Minecraft server plugins and tools.</li>
-            <li>This site hosts the shared theme — the stylesheets and scripts that every site in the ecosystem imports from <code>https://mcengine.github.io</code>.</li>
-        </ul>
+    <section class="home-section" aria-labelledby="modules-title">
+      <div class="home-section__head">
+        <h2 id="modules-title" class="section-title">Modules</h2>
+        <p class="lead">Each module ships one class you import; everything else is internal.</p>
+      </div>
+      <div class="card-grid">
+        <a class="card" href="github/index.html">
+          <span class="card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20.59 13.41 12 22l-9-9V3h10l7.59 7.59a2 2 0 0 1 0 2.82Z"></path>
+              <circle cx="7.5" cy="7.5" r="1.5"></circle>
+            </svg>
+          </span>
+          <h3 class="card__title">github</h3>
+          <p class="card__desc">Read tags and compare versions from the GitHub REST API through
+            <code>GitHubPlatform</code>.</p>
+          <div class="module-meta">
+            <span class="chip">Java 21</span>
+            <span class="chip">v0.0.0</span>
+            <span class="chip">No dependencies</span>
+          </div>
+          <span class="card__more">Open module &rarr;</span>
+        </a>
 
-        <h2>Ecosystem Sites</h2>
-        <div class="blocks">
-            <a class="block" href="https://mcvalac.github.io/">
-                <div class="block-title">MCValac</div>
-                <p>The MCBackpack plugin framework and its Core extension.</p>
-            </a>
-            <a class="block" href="https://mcpaimon.github.io/">
-                <div class="block-title">MCPaimon</div>
-                <p>The MCAgents plugin with its PlayerTools and ServerTools extensions.</p>
-            </a>
-            <a class="block" href="https://mcshot.github.io/">
-                <div class="block-title">MCShot</div>
-                <p>The MCShot project website.</p>
-            </a>
-            <a class="block" href="https://mchaagenti.github.io/">
-                <div class="block-title">MCHaagenti</div>
-                <p>The MCHaagenti documentation portal, home of MCTrade.</p>
-            </a>
+        <a class="card" href="gitlab/index.html">
+          <span class="card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20.59 13.41 12 22l-9-9V3h10l7.59 7.59a2 2 0 0 1 0 2.82Z"></path>
+              <circle cx="7.5" cy="7.5" r="1.5"></circle>
+            </svg>
+          </span>
+          <h3 class="card__title">gitlab</h3>
+          <p class="card__desc">Read tags and compare versions from the GitLab REST API through
+            <code>GitLabPlatform</code>.</p>
+          <div class="module-meta">
+            <span class="chip">Java 21</span>
+            <span class="chip">v0.0.0</span>
+            <span class="chip">No dependencies</span>
+          </div>
+          <span class="card__more">Open module &rarr;</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="home-section" aria-labelledby="ecosystem-title">
+      <div class="home-section__head">
+        <h2 id="ecosystem-title" class="section-title">Ecosystem sites</h2>
+        <p class="lead">Other MCEngine sites that reuse this repository's shared theme.</p>
+      </div>
+      <div class="card-grid">
+        <a class="card" href="https://mcvalac.github.io/" target="_blank" rel="noopener">
+          <h3 class="card__title">MCValac</h3>
+          <p class="card__desc">The MCBackpack plugin framework and its Core extension.</p>
+          <span class="card__more">Visit site &rarr;</span>
+        </a>
+        <a class="card" href="https://mcpaimon.github.io/" target="_blank" rel="noopener">
+          <h3 class="card__title">MCPaimon</h3>
+          <p class="card__desc">The MCAgents plugin with its PlayerTools and ServerTools extensions.</p>
+          <span class="card__more">Visit site &rarr;</span>
+        </a>
+        <a class="card" href="https://mcshot.github.io/" target="_blank" rel="noopener">
+          <h3 class="card__title">MCShot</h3>
+          <p class="card__desc">The MCShot project website.</p>
+          <span class="card__more">Visit site &rarr;</span>
+        </a>
+        <a class="card" href="https://mchaagenti.github.io/" target="_blank" rel="noopener">
+          <h3 class="card__title">MCHaagenti</h3>
+          <p class="card__desc">The MCHaagenti documentation portal, home of MCTrade.</p>
+          <span class="card__more">Visit site &rarr;</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="home-section">
+      <div class="callout callout--info">
+        <span class="callout__icon" aria-hidden="true">&#9432;</span>
+        <div class="callout__body">
+          <p><strong>New here?</strong> The <a href="important/index.html">Important</a> page
+            covers contributing, the open-core policy, support, and the AI-usage notice.</p>
         </div>
+      </div>
+    </section>
+  </main>
 
-        <h2>Notices</h2>
-        <div class="blocks">
-            <a class="block" href="important/">
-                <div class="block-title">Important</div>
-                <p>Contributing, open-core policy, support, and AI-usage notice.</p>
-            </a>
-        </div>
-
-        <div class="footer">Thank you.</div>
-    </div>
-
+  <div id="site-footer"></div>
 </body>
 </html>
