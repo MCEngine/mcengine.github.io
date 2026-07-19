@@ -1,12 +1,12 @@
 /* ==========================================================================
    MCEngine shared theme — white / silver / modern.
-   Served at https://mcengine.github.io/styles/main/style.css and imported by
-   every MCEngine ecosystem site. The design system is documented in
-   DESIGN.md of MCPaimon/mcpaimon.github.io; do not change tokens or
-   component styles without updating that document first.
+   Served at https://mcengine.github.io/styles/main/style.css. This is the
+   legacy single-file theme; ecosystem sites now keep their own vendored copy.
+   The design system is documented in DESIGN.md at the root of this repository;
+   do not change tokens or component styles without updating that document first.
    ========================================================================== */
 
-/* ---- Design tokens (see DESIGN.md § Tokens) ---- */
+/* ---- Design tokens (see DESIGN.md) ---- */
 :root {
   --color-bg: #ffffff;
   --color-surface: #f6f7f9;
@@ -68,7 +68,7 @@ a {
   color: var(--color-accent);
 }
 
-/* ---- Page transitions (see DESIGN.md § Motion) ---- */
+/* ---- Page transitions ---- */
 @media (prefers-reduced-motion: no-preference) {
   body {
     animation: page-in 0.45s ease-out both;

@@ -3,8 +3,7 @@
  * Served at https://mcengine.github.io/scripts/main/script.js and imported
  * by every MCEngine ecosystem site.
  *
- * Page transition controller — see DESIGN.md § Motion in
- * MCPaimon/mcpaimon.github.io. Fades the page out before following internal
+ * Page transition controller. Fades the page out before following internal
  * links; the entry animation is pure CSS (styles/main/style.css) so pages
  * still render normally without JavaScript.
  */
