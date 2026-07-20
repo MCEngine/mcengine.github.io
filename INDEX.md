@@ -50,9 +50,11 @@ hosts legacy shared theme assets that other ecosystem sites import through
 | `docs/index.html` | `/` — homepage: module cards, ecosystem links, notices. |
 | `docs/github/index.html` | `/github/` — `github` module usage page. |
 | `docs/github/logs/index.html` | `/github/logs/` — central log (mirrors latest). |
+| `docs/github/logs/0/1/0/index.html` | Permalink for github v0.1.0. |
 | `docs/github/logs/0/0/0/index.html` | Permalink for github v0.0.0. |
 | `docs/gitlab/index.html` | `/gitlab/` — `gitlab` module usage page. |
 | `docs/gitlab/logs/index.html` | `/gitlab/logs/` — central log (mirrors latest). |
+| `docs/gitlab/logs/0/1/0/index.html` | Permalink for gitlab v0.1.0. |
 | `docs/gitlab/logs/0/0/0/index.html` | Permalink for gitlab v0.0.0. |
 | `docs/important/index.html` | `/important/` — contributing, open-core policy, support, AI-usage notice. |
 

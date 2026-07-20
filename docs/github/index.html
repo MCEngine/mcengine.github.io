@@ -34,7 +34,7 @@
         a <code>CompletableFuture</code>.</p>
       <div class="repo-hero__meta">
         <span class="badge badge--accent">Java 21</span>
-        <span class="badge">v0.0.0</span>
+        <span class="badge">v0.1.0</span>
         <span class="badge badge--ok">No dependencies</span>
       </div>
       <div class="btn-row" style="margin-top:1.3rem">
@@ -48,7 +48,7 @@
       <div class="deflist">
         <div class="deflist__row"><div class="deflist__term">groupId</div><div>io.github.mcengine</div></div>
         <div class="deflist__row"><div class="deflist__term">artifactId</div><div>github</div></div>
-        <div class="deflist__row"><div class="deflist__term">version</div><div>0.0.0</div></div>
+        <div class="deflist__row"><div class="deflist__term">version</div><div>0.1.0</div></div>
         <div class="deflist__row"><div class="deflist__term">namespace</div><div>io.github.mcengine.github</div></div>
         <div class="deflist__row"><div class="deflist__term">class</div><div>io.github.mcengine.github.common.GitHubPlatform</div></div>
       </div>
@@ -71,7 +71,7 @@
 }
 
 dependencies {
-    implementation "io.github.mcengine:github:0.0.0"
+    implementation "io.github.mcengine:github:0.1.0"
 }</code></pre>
       <div class="callout callout--info">
         <span class="callout__icon" aria-hidden="true">&#9432;</span>
@@ -85,8 +85,9 @@ dependencies {
 
     <section class="panel">
       <h2 class="section-title">Usage</h2>
-      <p>Construct the platform with an owner and repository, then call any of the
-        three methods. Results arrive through a <code>CompletableFuture</code>:</p>
+      <p>Construct the platform with an owner and repository, then call any of its
+        methods. Results arrive through a <code>CompletableFuture</code>. An
+        optional fourth constructor argument sets a custom HTTP timeout:</p>
       <span class="code-label">Example</span>
 <pre><code>GitHubPlatform platform = new GitHubPlatform("MCEngine", "github");
 
@@ -96,14 +97,29 @@ platform.getLatestTag().thenAccept(tag -&gt; {
 });
 
 // A specific tag by name (or null when it does not exist)
-platform.getTag("v0.0.0").thenAccept(tag -&gt; { /* ... */ });
+platform.getTag("v0.1.0").thenAccept(tag -&gt; { /* ... */ });
+
+// Every tag, following pagination past the first 100
+platform.getAllTags().thenAccept(tags -&gt; System.out.println(tags.size() + " tags"));
 
 // Is the latest tag newer than a plain version? (the "v" prefix is handled)
-boolean newer = platform.CompareVersion("0.0.0").join();</code></pre>
+boolean newer = platform.compareVersion("0.1.0").join();
+
+// The latest published release and its notes
+platform.getLatestRelease().thenAccept(release -&gt; {
+    if (release != null) System.out.println(release.getTagName() + ": " + release.getName());
+});
+
+// Remaining REST API quota
+platform.getRateLimit().thenAccept(rate -&gt;
+    System.out.println(rate.getRemaining() + " requests until " + rate.getReset()));
+
+// Optional custom timeout (default is 30 seconds)
+GitHubPlatform quick = new GitHubPlatform("MCEngine", "github", token, Duration.ofSeconds(10));</code></pre>
       <div class="callout callout--warn">
         <span class="callout__icon" aria-hidden="true">&#9888;</span>
         <div class="callout__body">
-          <p>Pass the version to <code>CompareVersion</code> without a prefix (for
+          <p>Pass the version to <code>compareVersion</code> without a prefix (for
             example <code>1.0.0</code>). Tags stored as <code>v1.0.0</code> have the
             <code>v</code> removed before the <code>Major.Minor.Patch</code> comparison.</p>
         </div>
@@ -112,8 +128,9 @@ boolean newer = platform.CompareVersion("0.0.0").join();</code></pre>
 
     <section class="panel">
       <h2 class="section-title">Method reference</h2>
-      <p class="lead">Import only <code>GitHubPlatform</code>. It returns tags as the
-        read-only <code>GitHubTag</code> interface.</p>
+      <p class="lead">Import only <code>GitHubPlatform</code>. It returns tags,
+        releases, and rate-limit status as the read-only <code>GitHubTag</code>,
+        <code>GitHubRelease</code>, and <code>GitHubRateLimit</code> interfaces.</p>
 
       <div class="method">
         <span class="sig">CompletableFuture&lt;GitHubTag&gt; getLatestTag()</span>
@@ -128,10 +145,29 @@ boolean newer = platform.CompareVersion("0.0.0").join();</code></pre>
       </div>
 
       <div class="method">
-        <span class="sig">CompletableFuture&lt;Boolean&gt; CompareVersion(String version)</span>
+        <span class="sig">CompletableFuture&lt;List&lt;GitHubTag&gt;&gt; getAllTags()</span>
+        <p class="method__desc">Resolves to every tag, following the
+          <code>Link</code> header so repositories with more than one page of tags
+          are fully covered.</p>
+      </div>
+
+      <div class="method">
+        <span class="sig">CompletableFuture&lt;Boolean&gt; compareVersion(String version)</span>
         <p class="method__desc">Resolves to <code>true</code> when the latest tag is a
           newer semantic version than <code>version</code>; <code>false</code> when it is
           not newer or when the repository has no tags.</p>
+      </div>
+
+      <div class="method">
+        <span class="sig">CompletableFuture&lt;GitHubRelease&gt; getLatestRelease()</span>
+        <p class="method__desc">Resolves to the latest published release, or
+          <code>null</code> when the repository has no release.</p>
+      </div>
+
+      <div class="method">
+        <span class="sig">CompletableFuture&lt;GitHubRateLimit&gt; getRateLimit()</span>
+        <p class="method__desc">Resolves to the current REST API rate-limit status
+          for the token (or the anonymous quota when no token is set).</p>
       </div>
 
       <h3 style="margin-top:1.6rem">GitHubTag</h3>
@@ -139,10 +175,45 @@ boolean newer = platform.CompareVersion("0.0.0").join();</code></pre>
         <table>
           <thead><tr><th>Method</th><th>Returns</th><th>Description</th></tr></thead>
           <tbody>
-            <tr><td><code>getName()</code></td><td><code>String</code></td><td>Tag name as stored on GitHub, for example <code>v0.0.0</code>.</td></tr>
+            <tr><td><code>getName()</code></td><td><code>String</code></td><td>Tag name as stored on GitHub, for example <code>v0.1.0</code>.</td></tr>
             <tr><td><code>getCommitSha()</code></td><td><code>String</code></td><td>Commit SHA the tag points at, or <code>null</code> when unknown.</td></tr>
           </tbody>
         </table>
+      </div>
+
+      <h3 style="margin-top:1.6rem">GitHubRelease</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Method</th><th>Returns</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>getName()</code></td><td><code>String</code></td><td>Release name (title), or <code>null</code> when it has none.</td></tr>
+            <tr><td><code>getTagName()</code></td><td><code>String</code></td><td>Tag the release was published from, for example <code>v0.1.0</code>.</td></tr>
+            <tr><td><code>getBody()</code></td><td><code>String</code></td><td>Release notes (body), or <code>null</code> when empty.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 style="margin-top:1.6rem">GitHubRateLimit</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Method</th><th>Returns</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>getLimit()</code></td><td><code>int</code></td><td>Maximum requests permitted in the current window, or <code>-1</code> when unknown.</td></tr>
+            <tr><td><code>getRemaining()</code></td><td><code>int</code></td><td>Requests remaining in the current window, or <code>-1</code> when unknown.</td></tr>
+            <tr><td><code>getReset()</code></td><td><code>Instant</code></td><td>Instant at which the window resets, or <code>null</code> when unknown.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout callout--info" style="margin-top:1.4rem">
+        <span class="callout__icon" aria-hidden="true">&#9432;</span>
+        <div class="callout__body">
+          <p>A non-success response other than <code>404</code> completes the future
+            exceptionally with <code>GitHubApiException</code>, which exposes
+            <code>getStatusCode()</code> and <code>getResponseBody()</code>. A
+            <code>404</code> is not an error: lookups resolve to <code>null</code> for a
+            missing resource.</p>
+        </div>
       </div>
     </section>
 

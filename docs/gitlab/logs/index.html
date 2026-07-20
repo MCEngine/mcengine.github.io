@@ -38,19 +38,42 @@
 
         <article class="log-entry panel">
           <div class="log-entry__head">
-            <h2 class="log-entry__version">v0.0.0</h2>
-            <span class="log-entry__date">2026-07-19</span>
+            <h2 class="log-entry__version">v0.1.0</h2>
+            <span class="log-entry__date">2026-07-20</span>
             <span class="badge badge--ok">Latest</span>
           </div>
-          <p>Initial release of the <code>gitlab</code> module.</p>
+          <p>Adds release and rate-limit reads, full tag pagination, a configurable
+            timeout, and typed error handling to the <code>gitlab</code> module.</p>
 
           <div class="log-group">
-            <h3><span class="log-tag log-tag--new">Added</span> Platform API</h3>
+            <h3><span class="log-tag log-tag--new">Added</span> New API</h3>
             <ul>
-              <li><code>GitLabPlatform</code> — the single source-of-truth class consumers import.</li>
-              <li><code>getLatestTag()</code>, <code>getTag(String)</code>, and
-                <code>CompareVersion(String)</code>, each returning a <code>CompletableFuture</code>.</li>
-              <li><code>GitLabTag</code> read-only interface (<code>getName()</code>, <code>getCommitSha()</code>).</li>
+              <li><code>getAllTags()</code> — returns every tag as a
+                <code>CompletableFuture&lt;List&lt;GitLabTag&gt;&gt;</code>, following the
+                <code>Link</code> header across pages.</li>
+              <li><code>getLatestRelease()</code> with the read-only
+                <code>GitLabRelease</code> interface (<code>getName()</code>,
+                <code>getTagName()</code>, <code>getBody()</code>).</li>
+              <li><code>getRateLimit()</code> with the read-only
+                <code>GitLabRateLimit</code> interface (<code>getLimit()</code>,
+                <code>getRemaining()</code>, <code>getReset()</code>), read from the
+                <code>RateLimit-*</code> response headers.</li>
+              <li>Optional <code>Duration</code> constructor argument to configure the
+                HTTP timeout (default 30 seconds).</li>
+            </ul>
+          </div>
+
+          <div class="log-group">
+            <h3><span class="log-tag log-tag--improve">Changed</span> API refinements</h3>
+            <ul>
+              <li>Renamed <code>CompareVersion(String)</code> to
+                <code>compareVersion(String)</code> to follow Java naming conventions.</li>
+              <li>Tag reads now follow pagination, so <code>getLatestTag()</code>,
+                <code>getTag(String)</code>, and <code>compareVersion(String)</code> search
+                the full tag set rather than only the first 100.</li>
+              <li>Non-success responses other than <code>404</code> now throw
+                <code>GitLabApiException</code>, which exposes the HTTP status code and
+                response body, replacing the generic <code>IllegalStateException</code>.</li>
             </ul>
           </div>
 
@@ -58,20 +81,21 @@
             <h3><span class="log-tag log-tag--note">Notes</span> Build &amp; constraints</h3>
             <ul>
               <li>Java 21 toolchain, built with Gradle (Groovy DSL).</li>
-              <li>No third-party dependencies; only the Java Platform.</li>
-              <li>Addresses the GitLab project by its URL-encoded path; authenticates with the <code>PRIVATE-TOKEN</code> header.</li>
-              <li>Published to GitHub Packages using <code>GITHUB_ACTOR</code> / <code>GITHUB_TOKEN</code>.</li>
+              <li>Still no third-party dependencies; only the Java Platform.</li>
+              <li>Migration: update calls from <code>CompareVersion</code> to
+                <code>compareVersion</code>.</li>
             </ul>
           </div>
 
-          <p style="margin-top:1.2rem"><a href="0/0/0/index.html">Permanent link to v0.0.0 &rarr;</a></p>
+          <p style="margin-top:1.2rem"><a href="0/1/0/index.html">Permanent link to v0.1.0 &rarr;</a></p>
         </article>
       </div>
 
       <aside class="logs-nav panel" aria-label="Versions">
         <p class="logs-nav__title">Versions</p>
         <ul>
-          <li><a href="0/0/0/index.html">0.0.0 <span class="logs-nav__pill">Latest</span></a></li>
+          <li><a href="0/1/0/index.html">0.1.0 <span class="logs-nav__pill">Latest</span></a></li>
+          <li><a href="0/0/0/index.html">0.0.0</a></li>
         </ul>
       </aside>
     </div>
